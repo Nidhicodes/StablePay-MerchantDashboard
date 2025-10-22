@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { transactionService, TransactionEvent } from '@/lib/transaction-service';
 
 // Cache transactions in localStorage
-const CACHE_KEY = 'stablepay_transactions';
+const CACHE_KEY_PREFIX = 'stablepay_transactions';
 const CACHE_EXPIRY = 5 * 60 * 1000; // 5 minutes
 
 interface CachedData {
@@ -10,15 +10,20 @@ interface CachedData {
     timestamp: number;
 }
 
-export function useTransactions() {
+export function useTransactions(walletAddress: string | null) {
     const [transactions, setTransactions] = useState<TransactionEvent[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [hasFetched, setHasFetched] = useState(false);
 
+    const getCacheKey = () => walletAddress ? `${CACHE_KEY_PREFIX}_${walletAddress}` : null;
+
     // Load cached data on mount
     useEffect(() => {
-        const cached = localStorage.getItem(CACHE_KEY);
+        const cacheKey = getCacheKey();
+        if (!cacheKey) return;
+
+        const cached = localStorage.getItem(cacheKey);
         if (cached) {
             try {
                 const { transactions: cachedTransactions, timestamp }: CachedData = JSON.parse(cached);
@@ -37,13 +42,15 @@ export function useTransactions() {
                 console.warn('Failed to parse cached transactions:', err);
             }
         }
-    }, []);
+    }, [walletAddress]);
 
     const fetchTransactions = async () => {
+        if (!walletAddress) return;
+
         try {
             setLoading(true);
             setError(null);
-            const events = await transactionService.fetchStableCoinPurchases();
+            const events = await transactionService.fetchStableCoinPurchases(walletAddress);
             setTransactions(events);
             setHasFetched(true);
 
@@ -57,7 +64,10 @@ export function useTransactions() {
                 transactions: serializableEvents as any,
                 timestamp: Date.now()
             };
-            localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+            const cacheKey = getCacheKey();
+            if (cacheKey) {
+                localStorage.setItem(cacheKey, JSON.stringify(cacheData));
+            }
         } catch (err) {
             console.error('Error fetching transactions:', err);
             setError(err instanceof Error ? err.message : 'Failed to fetch transactions');
@@ -67,7 +77,10 @@ export function useTransactions() {
     };
 
     const clearCache = () => {
-        localStorage.removeItem(CACHE_KEY);
+        const cacheKey = getCacheKey();
+        if (cacheKey) {
+            localStorage.removeItem(cacheKey);
+        }
         setTransactions([]);
         setHasFetched(false);
     };

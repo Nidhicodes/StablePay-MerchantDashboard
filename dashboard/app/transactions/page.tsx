@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import DashboardPageLayout from "@/components/dashboard/layout"
 import CreditCardIcon from "@/components/icons/credit-card"
 import { useTransactions } from "@/hooks/use-transactions"
+import { useWallet } from "@/hooks/use-wallet"
 
 // Helper function to format address
 const formatAddress = (address: string) => {
@@ -24,7 +25,8 @@ const getRiskLevel = (amount: string) => {
 };
 
 export default function TransactionsPage() {
-  const { transactions, loading, error, hasFetched, fetchTransactions, clearCache } = useTransactions();
+  const { walletAddress } = useWallet()
+  const { transactions, loading, error, hasFetched, fetchTransactions, clearCache } = useTransactions(walletAddress);
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -41,6 +43,7 @@ export default function TransactionsPage() {
         icon: CreditCardIcon,
       }}
     >
+      
       <div className="flex flex-col h-full min-h-screen">
       {/* Header */}
       <div className="flex items-center justify-between px-8 py-4 border-b border-border/40">
