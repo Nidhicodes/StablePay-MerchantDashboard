@@ -1,0 +1,186 @@
+{
+  "dashboardStats": [
+    {
+      "label": "TRANSACTIONS PROCESSED",
+      "value": "2,847",
+      "description": "THIS WEEK",
+      "intent": "positive",
+      "icon": "gear",
+      "direction": "up"
+    },
+    {
+      "label": "REVENUE GENERATED",
+      "value": "$12,450",
+      "description": "TOTAL EARNINGS",
+      "intent": "positive",
+      "icon": "proccesor",
+      "direction": "up"
+    },
+    {
+      "label": "SUCCESS RATE",
+      "value": "99.2%",
+      "description": "PAYMENT SUCCESS",
+      "intent": "positive",
+      "icon": "boom",
+      "tag": "4 weeks 🔥"
+    }
+  ],
+  "chartData": {
+    "week": [
+      {
+        "date": "06/07",
+        "transactions": 50000,
+        "revenue": 30000,
+        "fees": 10000
+      },
+      {
+        "date": "07/07",
+        "transactions": 250000,
+        "revenue": 15000,
+        "fees": 30000
+      },
+      {
+        "date": "08/07",
+        "transactions": 200000,
+        "revenue": 50000,
+        "fees": 25000
+      },
+      {
+        "date": "09/07",
+        "transactions": 280000,
+        "revenue": 60000,
+        "fees": 45000
+      },
+      {
+        "date": "10/07",
+        "transactions": 120000,
+        "revenue": 20000,
+        "fees": 15000
+      },
+      {
+        "date": "11/07",
+        "transactions": 180000,
+        "revenue": 55000,
+        "fees": 20000
+      },
+      {
+        "date": "12/07",
+        "transactions": 500000,
+        "revenue": 35000,
+        "fees": 20000
+      },
+      {
+        "date": "13/07",
+        "transactions": 130000,
+        "revenue": 60000,
+        "fees": 10000
+      }
+    ],
+    "month": [
+      {
+        "date": "Jan",
+        "revenue": 45000,
+        "transactions": 180000,
+        "fees": 25000
+      },
+      {
+        "date": "Feb",
+        "revenue": 30000,
+        "transactions": 120000,
+        "fees": 20000
+      },
+      {
+        "date": "Mar",
+        "revenue": 65000,
+        "transactions": 280000,
+        "fees": 35000
+      },
+      {
+        "date": "Apr",
+        "revenue": 25000,
+        "transactions": 160000,
+        "fees": 18000
+      },
+      {
+        "date": "May",
+        "revenue": 80000,
+        "transactions": 350000,
+        "fees": 45000
+      },
+      {
+        "date": "Jun",
+        "revenue": 40000,
+        "transactions": 90000,
+        "fees": 25000
+      },
+      {
+        "date": "Jul",
+        "revenue": 70000,
+        "transactions": 220000,
+        "fees": 40000
+      },
+      {
+        "date": "Aug",
+        "revenue": 55000,
+        "transactions": 170000,
+        "fees": 30000
+      },
+      {
+        "date": "Sep",
+        "revenue": 60000,
+        "transactions": 200000,
+        "fees": 35000
+      },
+      {
+        "date": "Oct",
+        "revenue": 35000,
+        "transactions": 140000,
+        "fees": 22000
+      },
+      {
+        "date": "Nov",
+        "revenue": 75000,
+        "transactions": 340000,
+        "fees": 38000
+      },
+      {
+        "date": "Dec",
+        "revenue": 90000,
+        "transactions": 420000,
+        "fees": 50000
+      }
+    ],
+    "year": [
+      {
+        "date": "2020",
+        "revenue": 280000,
+        "transactions": 580000,
+        "fees": 150000
+      },
+      {
+        "date": "2021",
+        "revenue": 320000,
+        "transactions": 650000,
+        "fees": 180000
+      },
+      {
+        "date": "2022",
+        "revenue": 450000,
+        "transactions": 950000,
+        "fees": 250000
+      },
+      {
+        "date": "2023",
+        "revenue": 200000,
+        "transactions": 520000,
+        "fees": 120000
+      },
+      {
+        "date": "2024",
+        "revenue": 380000,
+        "transactions": 820000,
+        "fees": 200000
+      }
+    ]
+  }
+}
