@@ -43,7 +43,11 @@ export class TransactionService {
                 // Use event signature instead of abi + eventName
                 const purchaseEvents = await this.publicClient.getLogs({
                     address: getCurrentContractAddress() as `0x${string}`,
+<<<<<<< Updated upstream
                     event: parseAbiItem('event BoughtStableCoins(address indexed buyer, address indexed receiver, uint256 amountSC, uint256 amountBC)'),
+=======
+                    event: abi[0].abi.find(item => item.type === 'event' && item.name === 'BoughtStableCoins'),
+>>>>>>> Stashed changes
                     fromBlock,
                     toBlock
                 });
