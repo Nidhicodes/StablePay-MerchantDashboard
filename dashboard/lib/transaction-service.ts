@@ -1,7 +1,8 @@
 import { createPublicClient, http, formatUnits } from 'viem';
 import { sepolia } from 'viem/chains';
-import { abi } from './abi';
+
 import { getCurrentContractAddress } from './config';
+import { parseAbiItem } from 'viem';
 
 export interface TransactionEvent {
     buyer: string;
@@ -28,7 +29,7 @@ export class TransactionService {
         return `0x${cleanAddress}`;
     };
 
-    async fetchStableCoinPurchases(): Promise<TransactionEvent[]> {
+    async fetchStableCoinPurchases(merchantAddress?: string): Promise<TransactionEvent[]> {
         try {
             const currentBlock = await this.publicClient.getBlockNumber();
             const startBlock = BigInt(6000000);
@@ -42,12 +43,13 @@ export class TransactionService {
 
                 const purchaseEvents = await this.publicClient.getLogs({
                     address: getCurrentContractAddress() as `0x${string}`,
-                    abi: abi,
-                    eventName: 'BoughtStableCoins',
+                    event: parseAbiItem('event BoughtStableCoins(address indexed buyer, address indexed receiver, uint256 amountSC, uint256 amountBC)'),
+                    args: merchantAddress ? {
+                      receiver: merchantAddress
+                    }as any:undefined,
                     fromBlock,
                     toBlock
-                });
-
+                  });
                 allEvents = [...allEvents, ...purchaseEvents];
             }
 
