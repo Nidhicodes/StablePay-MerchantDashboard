@@ -10,9 +10,13 @@ import DashboardPageLayout from "@/components/dashboard/layout"
 import CreditCardIcon from "@/components/icons/credit-card"
 import { useTransactions } from "@/hooks/use-transactions"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { useWallet } from "@/hooks/use-wallet"
 =======
 import { useAccount } from "wagmi"
+>>>>>>> Stashed changes
+=======
+import { useWallet } from "@/hooks/use-wallet"
 >>>>>>> Stashed changes
 
 // Helper function to format address
@@ -30,11 +34,23 @@ const getRiskLevel = (amount: string) => {
 
 export default function TransactionsPage() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   const { walletAddress } = useWallet()
   const { transactions, loading, error, hasFetched, fetchTransactions, clearCache } = useTransactions(walletAddress);
 =======
   const { address: walletAddress } = useAccount();
   const { transactions, allTransactions, loading, error, hasFetched, fetchTransactions, clearCache, walletFilter, setWalletFilter } = useTransactions();
+>>>>>>> Stashed changes
+=======
+  const { walletAddress } = useWallet();
+  const { 
+    transactions, 
+    loading, 
+    error, 
+    hasFetched, 
+    fetchTransactions, 
+    clearCache 
+  } = useTransactions({ merchantAddress: walletAddress });
 >>>>>>> Stashed changes
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
